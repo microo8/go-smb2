@@ -14,10 +14,10 @@ import (
 	"sync"
 	"time"
 
-	. "github.com/hirochachacha/go-smb2/internal/erref"
-	. "github.com/hirochachacha/go-smb2/internal/smb2"
+	. "github.com/microo8/go-smb2/internal/erref"
+	. "github.com/microo8/go-smb2/internal/smb2"
 
-	"github.com/hirochachacha/go-smb2/internal/msrpc"
+	"github.com/microo8/go-smb2/internal/msrpc"
 )
 
 // Dialer contains options for func (*Dialer) Dial.
@@ -1719,12 +1719,14 @@ func (f *File) ReadFrom(r io.Reader) (n int64, err error) {
 			maxBufferSize = maxWriteSize
 		}
 
-		return copyBuffer(r, f, make([]byte, maxBufferSize))
+		return io.Copy(f, r)
+		//return copyBuffer(r, f, make([]byte, maxBufferSize))
 	}
 
-	maxWriteSize := int(f.fs.maxWriteSize)
+	//maxWriteSize := int(f.fs.maxWriteSize)
 
-	return copyBuffer(r, f, make([]byte, maxWriteSize))
+	//return copyBuffer(r, f, make([]byte, maxWriteSize))
+	return io.Copy(f, r)
 }
 
 // WriteTo implements io.WriteTo.

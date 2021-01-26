@@ -1,5 +1,5 @@
-module github.com/hirochachacha/go-smb2
+module github.com/microo8/go-smb2
 
-go 1.12
+go 1.15
 
-require golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
+require golang.org/x/crypto v0.0.0-20201221181555-eec23a3978ad
